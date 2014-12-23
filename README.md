@@ -6,7 +6,7 @@
 
 ## Description
 
-TODO: Description
+One idea is for this to house the reusable geometry logic in Ruby
 
 ## Features
 
