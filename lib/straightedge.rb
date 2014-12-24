@@ -5,11 +5,15 @@ require 'straightedge/rose'
 require 'straightedge/ruler'
 
 require 'straightedge/mark'
-require 'straightedge/line'
 require 'straightedge/figure'
 
+require 'straightedge/figures/line'
+
 # really a grid should be a tiling figure...!
-require 'straightedge/grid'
+require 'straightedge/figures/quadrilateral'
+require 'straightedge/figures/grid'
+
+require 'straightedge/scene'
 
 require 'straightedge/extend/array'
 

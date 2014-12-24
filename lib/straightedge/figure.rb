@@ -1,24 +1,34 @@
 module Straightedge
-  # TODO the idea is that a figure is a collection of lines and marks
+  # TODO the idea is that a figure is a collection of marks (and possible other figures...)
+  #      in itself a figure does not have a location
   class Figure
     extend Forwardable
-    def_delegators :marks, :each, :sample, :flatten, :to_a, :include?
+    include Enumerable
+
+    def_delegators :marks, :each
     def_delegator :compass, :project
+
     attr_reader :lines, :marks
     attr_reader :compass
 
-    def initialize(marks=[], lines: [], compass: Compass.default)
+    def initialize(marks=[], color: :black, lines: [], compass: Compass.default)
       @marks = marks
       @lines = lines
+      @color = color
       @compass = compass
     end
 
     def adjacent
-      @marks.map(&method(:project)).flatten(1).uniq.reject(&method(:include?))
+      approximate_adjacent = map(&method(:project)).flatten(1).uniq
+      actual_adjacent = approximate_adjacent.reject(&method(:include?))
+      actual_adjacent.sort_by(&method(:distance_from_center))
     end
 
+    # note this is center of the collection of marks
+    #      in terms of their own space; not displaced by location
+    #      or scaled by dimensions
     def center
-      [@marks.map(&:x).mean, @marks.map(&:y).mean]
+      [map(&:x).mean, map(&:y).mean]
     end
 
     def distance_from_center(xy)

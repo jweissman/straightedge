@@ -12,7 +12,7 @@ module Straightedge
       end
 
       def distance(alpha,beta)
-	Line.new(alpha,beta).length
+	Line.new([alpha,beta]).length
 	#dx, dy = alpha.x - beta.x, alpha.y - beta.y
 	#Math.sqrt(dx*dx + dy*dy)
       end
