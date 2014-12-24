@@ -1,11 +1,6 @@
 class Array
   extend Forwardable
 
-  def x; self[0] end
-  def y; self[1] end
-  def z; self[2] end
-  def t; self[3] end
-
   def sum
     inject(&:+)
   end
@@ -14,8 +9,15 @@ class Array
     sum / size
   end  
 
+  # consider the array as a vector in n-space (where n is the self.length)
+  def to_point
+    Straightedge::Mark.new(*self)
+  end
+  def_delegators :to_point, :x, :y
+
+  # consider the array as an array of points
   def to_points
-    Straightedge::Collection.new(self)
+    Straightedge::Figure.new(self)
   end
   def_delegators :to_points, :adjacent, :center
 end

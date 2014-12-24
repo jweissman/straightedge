@@ -1,31 +1,45 @@
-
 require 'spec_helper'
-require 'parallel'
-require 'active_support/core_ext/array'
-require 'abstracta/extend/array'
+require 'straightedge/mark'
+require 'straightedge/figure'
+require 'straightedge/compass'
+require 'straightedge/rose'
+require 'straightedge/extend/array'
+require 'pry'
 
 describe Array do
-  subject do 
-    [1,2,3,0]
+  describe ".to_point" do
+    subject do 
+      [1,2]
+    end
+
+    context 'should decode straightforwardly as a geometric coordinate' do
+      it 'should have an x-coordinate' do
+	expect(subject.x).to eql(1)
+      end
+
+      it 'should have a y-coordinate' do
+	expect(subject.y).to eql(2)
+      end
+    end
   end
 
-  it 'should decode straightforwardly as a geometric coordinate' do
-    expect(subject.x).to eql(1)
-    expect(subject.y).to eql(2)
-    expect(subject.z).to eql(3)
-    expect(subject.t).to eql(0)
+  describe ".to_points" do
+    subject do
+      [[1,2],[3,2]]
+    end
+
+    context 'should decode as a set of points' do
+      it 'should have a center' do
+	expect(subject.center).to eql([2,2])
+      end
+
+      let(:expected_adjacent) do
+	[[1, 1], [1, 3], [2, 2], [0, 2], [2, 1], [2, 3], [0, 1], [0, 3], [3, 1], [3, 3], [4, 2], [4, 1], [4, 3]]
+      end
+      it 'should have adjacent coordinates' do
+	expect(subject.adjacent).to eql(expected_adjacent)
+      end
+    end
   end
-
-  #it 'should process in parallel' do
-  #  expect(subject).to respond_to(:parallel_each)
-  #  expect(Parallel).to receive(:each)
-
-  #  expect { subject.parallel_each(&method(:print)) }.to_not raise_error
-  #end
-
-  #it 'should fallback to #each if PARALLELISM=1' do
-  #  Object.const_set(:PARALLELISM, 1)
-  #  expect(subject).to receive(:each)
-  #  subject.parallel_each(&method(:print))
-  #end
 end
+

@@ -1,17 +1,12 @@
 require 'spec_helper'
+require 'straightedge/extend/array'
+require 'straightedge/mark'
 require 'straightedge/rose'
 require 'straightedge/compass'
 
 describe Compass do
   let(:origin) { [0,0] }
 
-  #it 'should translate points' do
-  #  expect(subject.move([0,1],:north)).to eql(origin)
-  #  expect(subject.move([-1,0],:east)).to eql(origin)
-  #  expect(subject.move(origin, :south)).to eql([0,1])
-  #end
-
-  # TODO separate into own spec?
   context "roses" do
     it 'should construct a simple rose' do
       %i[ north south east west ].each do |d| 

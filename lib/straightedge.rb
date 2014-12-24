@@ -1,16 +1,17 @@
 require 'straightedge/version'
 
-#require 'straightedge/
+require 'straightedge/compass'
+require 'straightedge/rose'
+require 'straightedge/ruler'
+
+require 'straightedge/mark'
+require 'straightedge/line'
+require 'straightedge/figure'
+
+# really a grid should be a tiling figure...!
+require 'straightedge/grid'
+
+require 'straightedge/extend/array'
 
 module Straightedge
-  def self.included(base)
-    base.include(InstanceMethods)
-    base.extend(ClassMethods)
-  end
-
-  module InstanceMethods
-  end
-
-  module ClassMethods
-  end
 end

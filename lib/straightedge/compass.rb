@@ -12,10 +12,6 @@ module Straightedge
       def default
 	@default_compass ||= new
       end
-
-      #def translate(point, delta)
-      #  point.zip(delta).map { |x,y| x + y }
-      #end
     end
   end
 end
