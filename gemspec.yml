@@ -1,6 +1,6 @@
 name: straightedge
-summary: "TODO: Summary"
-description: "TODO: Description"
+summary: geometry concepts for ruby
+description: give me a compass and straightedge and i will conquer the world
 license: MIT
 authors: Joseph Weissman
 email: jweissman1986@gmail.com
