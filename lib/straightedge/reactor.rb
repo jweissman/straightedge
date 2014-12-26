@@ -6,7 +6,7 @@ module Straightedge
       @director = director
     end
 
-    def scene; @director.scenes.first end
+    def scene; @director.current_scene end
     def turn;  @director.orchestrate end
 
     def handle(event, *args)

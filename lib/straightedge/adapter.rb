@@ -12,7 +12,13 @@ module Straightedge
     
     def initialize(reactor: Reactor.new, plane: plane)
       @reactor = reactor
+
       @plane   = plane # Surface.new(self)
+    end
+
+    def attach(surface)
+      @plane = surface
+      @plane.adapter = self
     end
 
     def render

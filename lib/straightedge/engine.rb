@@ -1,6 +1,6 @@
 module Straightedge
   class Engine
-    def initialize(director: Director.new, adapter: Adapter.new, reactor: Reactor.new)
+    def initialize(director: Director.new, plane: nil, adapter: Adapter.new, reactor: Reactor.new)
       @director = director
       @reactor  = reactor
       @adapter  = adapter
@@ -8,6 +8,7 @@ module Straightedge
       # bind them together...
       @reactor.director = director
       @adapter.reactor  = reactor
+      @adapter.attach(plane) if plane
     end
 
     def boot
