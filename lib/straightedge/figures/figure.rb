@@ -12,7 +12,7 @@ module Straightedge
       attr_reader :lines, :marks
       attr_reader :compass
 
-      def initialize(marks=[], color: :black, lines: [], compass: Compass.default)
+      def initialize(marks=[], color: :black, lines: [], compass: Straightedge::Toolkit::Compass.default)
 	@marks = marks
 	@lines = lines
 	@color = color
@@ -24,6 +24,7 @@ module Straightedge
 	actual_adjacent = approximate_adjacent.reject(&method(:include?))
 	actual_adjacent.sort_by(&method(:distance_from_center))
       end
+
 
       # note this is center of the collection of raw marks
       #      in terms of their own space; not displaced by location
