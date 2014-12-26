@@ -1,7 +1,13 @@
 module Straightedge
   module Figures
-    # just a quadrilateral but auto-scaled to the given grid granularity
-    class GridCell < Quadrilateral
+    # technically a label isn't even a figure, just a mark with an associated string
+    class Label < Mark
+      attr_reader :text
+      
+      def says(text)
+	@text = text
+	self
+      end
     end
   end
 end

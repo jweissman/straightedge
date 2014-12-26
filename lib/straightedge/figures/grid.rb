@@ -5,7 +5,6 @@ module Straightedge
     #
     class Grid < Quadrilateral
       include Enumerable
-
       def_delegators :to_a, :sample
 
       def each

@@ -18,8 +18,8 @@ module Straightedge
     alias :width :x
     alias :height :y
 
-    def initialize(*args,color: :black)
-      @x, @y = *args # x, y
+    def initialize(*xy, color: :black)
+      @x, @y = *xy # x, y
       @color = color
     end
   end
