@@ -12,15 +12,17 @@ module Straightedge
   # a vector and push the calculation as far west as
   # possible
   #
-  class Mark
-    attr_reader :color, :x, :y
+  module Figures
+    class Mark
+      attr_reader :color, :x, :y
 
-    alias :width :x
-    alias :height :y
+      alias :width :x
+      alias :height :y
 
-    def initialize(*xy, color: :black)
-      @x, @y = *xy # x, y
-      @color = color
+      def initialize(*xy, color: :black)
+	@x, @y = *xy # x, y
+	@color = color
+      end
     end
   end
 end

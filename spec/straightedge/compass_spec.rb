@@ -1,8 +1,4 @@
 require 'spec_helper'
-require 'straightedge/extend/array'
-require 'straightedge/mark'
-require 'straightedge/rose'
-require 'straightedge/compass'
 
 describe Compass do
   let(:origin) { [0,0] }

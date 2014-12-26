@@ -1,9 +1,4 @@
 require 'spec_helper'
-require 'straightedge/mark'
-require 'straightedge/figure'
-require 'straightedge/compass'
-require 'straightedge/rose'
-require 'straightedge/extend/array'
 require 'pry'
 
 describe Array do

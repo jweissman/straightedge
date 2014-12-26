@@ -1,9 +1,4 @@
 require 'spec_helper'
-require 'straightedge/extend/array'
-require 'straightedge/rose'
-require 'straightedge/ruler'
-
-  # TODO separate into own spec?
 describe Straightedge::Rose do
   context "roses" do
     it 'should construct a simple rose' do
