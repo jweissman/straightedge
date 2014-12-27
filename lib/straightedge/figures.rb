@@ -8,4 +8,3 @@ require 'straightedge/figures/quadrilateral'
 
 require 'straightedge/figures/grid'
 
-

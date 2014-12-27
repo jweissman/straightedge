@@ -15,7 +15,7 @@ module Straightedge
 	end
 
 	def distance(alpha,beta)
-	  Line.new([alpha,beta]).length
+	  Straightedge::Figures::Line.new([alpha,beta]).length
 	end
       end
     end

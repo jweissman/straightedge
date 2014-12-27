@@ -1,7 +1,11 @@
 module Straightedge
   module Colors
+    def self.all
+      %w[ red green white blue black none ]
+    end
+
     def self.pick
-      %w[ red green white none ].sample
+      all.sample
     end
 
     def self.hex_value(color)

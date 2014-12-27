@@ -34,7 +34,7 @@ module Straightedge
       end
 
       def distance_from_center(xy)
-	Ruler.distance(xy,center)
+	Straightedge::Toolkit::Ruler.distance(xy,center)
       end
     end
   end
