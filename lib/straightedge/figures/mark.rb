@@ -1,17 +1,4 @@
 module Straightedge
-  #
-  # a mark is an "indicated" point with an optional color
-  # the idea is for it to be a thin wrapper around the 
-  # vector arrays that are going to be so common
-  #
-  # so calling .to_point on an array will give you a mark
-  # and hence #x/#y accessors (equivalently #width/#height)
-  # on simple vectors
-  #
-  # where you could instantiate a mark, try to just use 
-  # a vector and push the calculation as far west as
-  # possible
-  #
   module Figures
     class Mark
       attr_reader :color, :x, :y
@@ -20,9 +7,13 @@ module Straightedge
       alias :height :y
 
       def initialize(*xy, color: :black)
-	@x, @y = *xy # x, y
+	@x, @y = *xy
 	@color = color
       end
+
+      def paint(color); @color = color end
+
+      def self.empty(*xy); new(*xy, color: :none) end
     end
   end
 end

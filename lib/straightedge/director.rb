@@ -1,19 +1,25 @@
 module Straightedge
-  class Director < Designer
-    attr_reader :scenes
+  class Director
+    extend Forwardable
+    include Straightedge::Figures
 
-    #def initialize(scenes=[])
-    #  @scenes = scenes
-    #end
+    attr_accessor :scene
 
-    # interface to render -- expects an immutable structure with
-    # 			     the rendering locations and elements
-    def current_scene
-      raise 'implement in subclass'
+    def prepare_stage(geometry)
+      @width, @height = *geometry
     end
 
     def orchestrate
-      raise 'implement in a subclass'
+      warn 'implement in subclass'
+    end
+
+    def current_scene
+      @scene || Straightedge.default_scene
+    end
+
+    ## handle custom events from the surface (clicks)...
+    def handle(evt_name, *args)
+      puts "--- got event #{evt_name} with args #{args}"
     end
   end
 end
