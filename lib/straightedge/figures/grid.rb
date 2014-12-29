@@ -12,18 +12,16 @@ module Straightedge
 	@dimensions = dimensions
 	@scale      = opts.delete(:scale)  { 1.0 }
 	@figure     = opts.delete(:figure) { Quadrilateral }
-	super([], opts)
-	@marks = {}
+	super(to_a, opts)
       end
-    
-      #def at(xy)
-      #  @marks[xy] ||= #Mark.new(xy.x, xy.y) 
-      #  	       [xy.x, xy.y]
-      #end
+
+      def at(xy)
+	[xy.x, xy.y]
+      end
 
       def each
 	Grid.each_coordinate([width, height]) do |x, y|
-	  yield [x,y]
+	  yield(at([x,y]))
 	end
       end
 

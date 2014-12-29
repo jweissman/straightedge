@@ -18,7 +18,7 @@ module Straightedge
 	[0,0] 
       end
 
-      def paint(color)
+      def paint(color=Colors.pick)
 	@color = color 
       end
 

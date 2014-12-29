@@ -1,13 +1,5 @@
 require 'spec_helper'
 
-#require 'straightedge/extend/array'
-#require 'straightedge/mark'
-#require 'straightedge/rose'
-#
-#require 'straightedge/compass'
-#require 'straightedge/figure'
-#require 'straightedge/figures/grid'
-
 describe Grid do
   context "when given width and height" do
     let(:width)  { 10 }
