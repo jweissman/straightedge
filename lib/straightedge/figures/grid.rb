@@ -2,7 +2,10 @@ module Straightedge
   module Figures
     # TODO extend, make into just a tiling Figure 
     #      so we can choose between hexagons and rectangles
+    #
     #      seems like grid @marks really should just be the inner marks...
+    #
+    #      yeah we really should break this down a little bit, hmm...
     #
     class Grid < Quadrilateral
       include Enumerable
