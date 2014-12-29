@@ -11,4 +11,6 @@ module Straightedge
       @adapter.kickstart
     end
   end
+
+  config.engine_class = Engine
 end

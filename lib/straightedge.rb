@@ -1,6 +1,7 @@
 require 'mini/config'
 
 require 'straightedge/version'
+require 'straightedge/config'
 
 require 'straightedge/tools'
 require 'straightedge/figures'
@@ -19,25 +20,15 @@ require 'straightedge/colors'
 require 'straightedge/extend/array'
 
 module Straightedge
-  include Mini::Config
-
   include Toolkit
   include Figures
-
-  configure do |straightedge|
-    straightedge.surface_class  = AbstractSurface
-    straightedge.agent_class    = Director
-    straightedge.adapter_class  = Adapter
-    straightedge.engine_class   = Engine
-
-    straightedge.geometry = [ 1600, 1200 ]
-
-    straightedge.palette = Colors.pleasant_pastels_palette
-  end
   
+  # create constructors around out configured default components
   class << self
     %w[ engine agent surface adapter ].each do |elem|
-      define_method("new_#{elem}") { |*args| Straightedge.config.send("#{elem}_class").new(*args) }
+      define_method("new_#{elem}") do |*args| 
+	Straightedge.config.send("#{elem}_class").new(*args) 
+      end
     end
   end
 

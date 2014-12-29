@@ -16,4 +16,6 @@ module Straightedge
       @adapter = adapter
     end
   end
+
+  config.surface_class = AbstractSurface
 end

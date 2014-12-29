@@ -27,9 +27,7 @@ module Straightedge
       puts "--- got event #{evt_name} with args #{args}"
       send(evt_name.to_sym, *args)
     end
-
-    def click(x,y)
-      warn 'click! -- implement in subclass of Director'
-    end
   end
+
+  config.agent_class = Director
 end

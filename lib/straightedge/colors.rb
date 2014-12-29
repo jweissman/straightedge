@@ -8,8 +8,48 @@ module Straightedge
 
       def list; @names_and_values.keys end
       def_delegator :list, :sample
+      
+      def hex_value_for(name)
+	raise "no such color: #{name}" unless list.include?(name)
+	@names_and_values[name] 
+      end
+
+      def self.crude_rgb
+	@hard_rgb ||= new({
+	  white: 0xFFFFFFFF,
+	  red:   0xFFFF0000,
+	  green: 0xFF00FF00,
+	  blue:  0xFF0000FF,
+	  black: 0xFF000000,
+	  none:  0x00000000,
+	})
+      end
+
+# http://paletton.com/#uid=b5C4c2O0kfUu76fODb3COkppkonk+
+      def self.clean_rgb
+	@smooth_rgb ||= new({
+          red:   0xFFEE787B, red1: 0xFFFECDCE,   red2: 0xFFFDA6A8,   red3: 0xFFC8494C,   red4: 0xFFA6282B,
+          blue:  0xFF6C5DA5, blue1: 0xFFC2BAE0,  blue2: 0xFF9488C3,  blue3: 0xFF4D3D8B,  blue4: 0xFF362673, 
+          green: 0xFF67C262, green1: 0xFFC0ECBE, green2: 0xFF93DA8F, green3: 0xFF40A33B, green4: 0xFF258720
+	})
+      end
+
+      # Palette URL: http://paletton.com/#uid=72s0u0k8kpR26GB4Wuzc2lNfjho
+      #
+      # the '4' is closer to the base color, we may want to rethink the naming strategy
+      # also -- we need a color concept and to generate these but that's another day!
+      def self.pleasant_pastels
+	@pastels ||= new({
+	  tan: 0xFFA9BD8C,    tan1: 0xFFEBF2E2,    tan2: 0xFFD2E0BD,    tan3: 0xFF87A063,    tan4: 0xFF667F42, 
+	  green: 0xFF71987D,  green1: 0xFFC7D5CB,  green2: 0xFF98B4A1,  green3: 0xFF50805F,  green4: 0xFF356644,
+	  pink: 0xFFCEA098,   pink1: 0xFFFFF1EE,   pink2: 0xFFF4D3CE,   pink3: 0xFFAE756C,   pink4: 0xFF8B5148,
+	  purple: 0xFFAD8095, purple1: 0xFFE5D6DD, purple2: 0xFFCDADBC, purple3: 0xFF925B74, purple4: 0xFF743D56,
+	})
+      end
     end
 
+    # expose module-level wrappers around the currently-configured palette
+    #
     def self.palette
       @current_palette ||= Straightedge.config.palette
     end
@@ -22,34 +62,11 @@ module Straightedge
       palette.sample
     end
 
-    def self.crude_rgb_palette
-      @rgb ||= Palette.new({
-        white: 0xFFFFFFFF,
-        red:   0xFFFF0000,
-        green: 0xFF00FF00,
-        blue:  0xFF0000FF,
-        black: 0xFF000000,
-        none:  0x00000000,
-      })
-    end
-
-    # Palette URL: http://paletton.com/#uid=72s0u0k8kpR26GB4Wuzc2lNfjho
-    #
-    # the '4' is closer to the base color, we may want to rethink the naming strategy
-    # also -- we need a color concept and to generate these but that's another day!
-    def self.pleasant_pastels_palette
-      @pastels ||= Palette.new({
-	   tan: 0xFFA9BD8C,    tan1: 0xFFEBF2E2,    tan2: 0xFFD2E0BD,    tan3: 0xFF87A063,    tan4: 0xFF667F42, 
-	 green: 0xFF71987D,  green1: 0xFFC7D5CB,  green2: 0xFF98B4A1,  green3: 0xFF50805F,  green4: 0xFF356644,
-	  pink: 0xFFCEA098,   pink1: 0xFFFFF1EE,   pink2: 0xFFF4D3CE,   pink3: 0xFFAE756C,   pink4: 0xFF8B5148,
-	purple: 0xFFAD8095, purple1: 0xFFE5D6DD, purple2: 0xFFCDADBC, purple3: 0xFF925B74, purple4: 0xFF743D56,
-      })
-    end
-
     def self.hex_value(color)
-      c = color.to_sym
-      raise "no such color: #{c}" unless palette.keys.include?(c)
-      palette[c] 
+      palette.hex_value_for color
     end
   end
+
+  # assign a basic rgb default color palette
+  config.palette = Colors::Palette.clean_rgb
 end

@@ -66,4 +66,6 @@ module Straightedge
       @agent.handle(:click, xy)
     end
   end
+
+  config.adapter_class = Adapter
 end
