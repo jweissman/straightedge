@@ -1,24 +1,24 @@
 module Straightedge
   module Figures
-    # TODO the idea is that a figure is a collection of marks (and possible other figures...)
-    #      in itself a figure does not have a location
+    # TODO the idea is that a figure is a collection of marks (and possibly other figures...?)
+    #       marks should be represented relative to the *figural* origin
     class Figure
       extend Forwardable
       include Enumerable
 
       def_delegators :marks, :each
-      def_delegator :compass, :project
+      def_delegators :compass, :project
+      def_delegators :location, :x, :y
 
-      attr_reader :lines, :marks, :scale
-      attr_reader :compass
+      attr_reader :marks, :scale, :location
 
-      def initialize(marks=[], scale: 1.0, color: :black, lines: [], compass: Straightedge::Toolkit::Compass.default)
-	@marks = marks
-	@lines = lines
-	@color = color
-	@compass = compass
-	@scale = scale
+      def initialize(marks=[], location: [0,0], color: :white)
+	@marks    = marks
+	@color    = color
+	@location = location
       end
+
+      def compass; @compass ||= Compass.default end
 
       def adjacent
 	approximate_adjacent = map(&method(:project)).flatten(1).uniq

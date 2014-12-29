@@ -24,6 +24,19 @@ module Straightedge
 	  } 
 	end
 
+	# for hex navigation (nb coords are in cube-space)
+	def hexagonal
+	  return @hex_rose unless @hex_rose.nil?
+	  @hex_rose = new directions: {
+	    :north     => [1, -1, 0],
+	    :northeast => [0, -1, 1],
+	    :northwest => [1, 0, -1],
+	    :south     => [-1, 1, 0],
+	    :southeast => [-1, 0, 1],
+	    :southwest => [0, 1, -1]
+	  }
+	end
+
 	def extended
 	  return @extended_rose unless @extended_rose.nil?
 	  simple_rose_axes = [[:east,:west],[:north, :south]]

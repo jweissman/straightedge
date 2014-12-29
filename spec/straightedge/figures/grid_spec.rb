@@ -14,8 +14,8 @@ describe Grid do
     let(:height) { 10 }
     subject { Grid.new([width,height]) }
     it 'should reflect given width and height' do 
-      expect(subject.x).to eql(width)
-      expect(subject.y).to eql(height)
+      expect(subject.width).to eql(width)
+      expect(subject.height).to eql(height)
     end
   end
 

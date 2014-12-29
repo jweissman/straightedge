@@ -13,9 +13,9 @@ module Straightedge
 
     def current_scene
       Scene.new({
-	[0,0]     => Grid.new([3,4], scale: 50).randomize_colors,
+	[0,0]     => Grid.new([3,4]), #.randomize_colors,
 	[200,300] => Quadrilateral.new([200,90]),
-	[320,50]   => Label.new.says("this is only a test"),
+	[320,50]  => Label.new.says("this is only a test"),
 	[150,90]  => "treat strings like labels"
       })
     end

@@ -1,43 +1,30 @@
 module Straightedge
   module Figures
-    # TODO extend, make into just a tiling Figure 
-    #      so we can choose between hexagons and rectangles
-    #
-    #      seems like grid @marks really should just be the inner marks...
-    #
-    #      yeah we really should break this down a little bit, hmm...
-    #
-    class Grid < Quadrilateral
+    class Grid < Figure #Quadrilateral
       include Enumerable
       def_delegators :to_a, :sample
+      def_delegator :dimensions, :x, :width
+      def_delegator :dimensions, :y, :height
 
-      attr_accessor :scale
+      attr_reader :dimensions, :scale, :figure
 
-      def at(xy)
-	@inner_marks     ||= {}
-	@inner_marks[xy] ||= Mark.new(*xy)
-	@inner_marks[xy]
+      def initialize(dimensions=[], opts={})
+	@dimensions = dimensions
+	@scale      = opts.delete(:scale)  { 1.0 }
+	@figure     = opts.delete(:figure) { Quadrilateral }
+	super([], opts)
+	@marks = {}
       end
+    
+      #def at(xy)
+      #  @marks[xy] ||= #Mark.new(xy.x, xy.y) 
+      #  	       [xy.x, xy.y]
+      #end
 
       def each
-	x.times do |_x|
-	  y.times do |_y|
-	    yield [_x,_y]
-	  end
+	Grid.each_coordinate([width, height]) do |x, y|
+	  yield [x,y]
 	end
-      end
-
-      def each_mark
-	each do |xy|
-	  yield(at(xy))
-	end
-      end
-
-      def randomize_colors
-	each_mark do |mark|
-	  mark.paint Colors.pick
-	end
-	self
       end
 
       def clip(xys=[])
@@ -47,17 +34,13 @@ module Straightedge
 	end 
       end
 
-      def self.reify_geometry(geometry=[], scale=1.0)
-	[geometry.x/scale, geometry.y/scale]
+      def self.each_coordinate(dimensions)
+	dimensions.x.times do |x|
+	  dimensions.y.times do |y|
+	    yield [x,y]
+	  end
+	end
       end
-
-      def reify(xy)
-	Grid.reify_geometry(xy, @scale)
-      end
-
-      #def self.dereference_coordinate(xy, scale=1.0)
-      #  [xy.x / scale, xy.y / scale]
-      #end
     end
   end
 end
