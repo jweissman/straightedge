@@ -8,14 +8,21 @@ module Straightedge
     end
 
     def orchestrate
-      warn 'implement in subclass'
+      warn 'implement Director#orchestrate in subclass'
     end
 
     def current_scene
-      Straightedge.default_scene
+      Scene.new({
+	[0,0]     => Grid.new([3,4], scale: 50).randomize_colors,
+	[200,300] => Quadrilateral.new([200,90]),
+	[320,50]   => Label.new.says("this is only a test"),
+	[150,90]  => "treat strings like labels"
+      })
     end
 
     ## handle custom events from the surface (clicks)...
+    #  how should we handle socket/player connects?
+    #
     def handle(evt_name, *args)
       puts "--- got event #{evt_name} with args #{args}"
       send(evt_name.to_sym, *args)

@@ -9,7 +9,7 @@ describe Straightedge do
   context "contracts" do
 
     context "example scene" do
-      let(:scene) { Straightedge.default_scene }
+      let(:scene) { Director.new.current_scene }
       it "should be constructed without issues" do
 	expect { scene.render }.not_to raise_error
       end

@@ -46,6 +46,18 @@ module Straightedge
 	  _x < 0 || _y < 0 || x >= _x || y >= _y
 	end 
       end
+
+      def self.reify_geometry(geometry=[], scale=1.0)
+	[geometry.x/scale, geometry.y/scale]
+      end
+
+      def reify(xy)
+	Grid.reify_geometry(xy, @scale)
+      end
+
+      #def self.dereference_coordinate(xy, scale=1.0)
+      #  [xy.x / scale, xy.y / scale]
+      #end
     end
   end
 end

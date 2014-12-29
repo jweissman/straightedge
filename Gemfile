@@ -2,6 +2,8 @@ source :rubygems
 
 gemspec
 
+gem 'mini-config'
+
 group :test do
   gem 'rspec'
   gem 'rspec-its'

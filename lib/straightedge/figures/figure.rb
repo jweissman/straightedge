@@ -9,14 +9,15 @@ module Straightedge
       def_delegators :marks, :each
       def_delegator :compass, :project
 
-      attr_reader :lines, :marks
+      attr_reader :lines, :marks, :scale
       attr_reader :compass
 
-      def initialize(marks=[], color: :black, lines: [], compass: Straightedge::Toolkit::Compass.default)
+      def initialize(marks=[], scale: 1.0, color: :black, lines: [], compass: Straightedge::Toolkit::Compass.default)
 	@marks = marks
 	@lines = lines
 	@color = color
 	@compass = compass
+	@scale = scale
       end
 
       def adjacent
