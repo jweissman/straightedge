@@ -61,9 +61,8 @@ module Straightedge
       @agent.orchestrate
     end
 
-    def click(xy)
-      puts "--- clicked at #{xy}"
-      @agent.handle(:click, xy)
+    def click(x,y)
+      @agent.handle(:click, x, y)
     end
   end
 

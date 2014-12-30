@@ -13,9 +13,10 @@ module Straightedge
 
     def current_scene
       Scene.new({
-	[0,0]     => QuadSpace.new([10,10]).randomize_colors,
-	[200,300] => Quadrilateral.new([200,90]),
-	[320,50]  => Label.new.says("this is only a test"),
+	ORIGIN    => QuadSpace.new([10,10], scale: 5.0).paint!,
+	[200,300] => Quadrilateral.new(location: [200,100]),
+	[400,300] => Hexagon.new(location: [200,100]),
+	[320,250] => Label.new.says("this is only a test"),
 	[150,90]  => "treat strings like labels"
       })
     end
@@ -24,7 +25,7 @@ module Straightedge
     #  how should we handle socket/player connects?
     #
     def handle(evt_name, *args)
-      puts "--- got event #{evt_name} with args #{args}"
+      #puts "--- got event #{evt_name} with args #{args}"
       send(evt_name.to_sym, *args)
     end
   end

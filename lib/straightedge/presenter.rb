@@ -1,4 +1,5 @@
 module Straightedge
+  # TODO something with this
   class Presenter
     extend Forwardable
     def_delegators :location, :x, :y

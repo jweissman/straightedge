@@ -1,6 +1,6 @@
 module Straightedge
   module Figures
-    class Grid < Figure #Quadrilateral
+    class Grid < Figure
       include Enumerable
       def_delegators :to_a, :sample, :map!
       def_delegator :dimensions, :x, :width
@@ -37,6 +37,14 @@ module Straightedge
 	    yield [x,y]
 	  end
 	end
+      end
+
+      def to_pixels(xy)
+	[xy.x * @scale, xy.y * @scale]
+      end
+
+      def to_coords(xy)
+	[xy.x / @scale, xy.y / @scale ]
       end
     end
   end

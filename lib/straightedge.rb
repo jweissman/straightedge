@@ -3,6 +3,8 @@ require 'mini/config'
 require 'straightedge/version'
 require 'straightedge/config'
 
+require 'straightedge/origin'
+
 require 'straightedge/aspects'
 require 'straightedge/tools'
 require 'straightedge/figures'
