@@ -2,7 +2,7 @@ module Straightedge
   module Figures
     class Grid < Figure #Quadrilateral
       include Enumerable
-      def_delegators :to_a, :sample
+      def_delegators :to_a, :sample, :map!
       def_delegator :dimensions, :x, :width
       def_delegator :dimensions, :y, :height
 
@@ -11,7 +11,6 @@ module Straightedge
       def initialize(dimensions=[], opts={})
 	@dimensions = dimensions
 	@scale      = opts.delete(:scale)  { 1.0 }
-	@figure     = opts.delete(:figure) { Quadrilateral }
 	super(to_a, opts)
       end
 

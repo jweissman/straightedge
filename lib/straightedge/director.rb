@@ -13,7 +13,7 @@ module Straightedge
 
     def current_scene
       Scene.new({
-	[0,0]     => Space.new([3,4]).randomize_colors,
+	[0,0]     => QuadSpace.new([10,10]).randomize_colors,
 	[200,300] => Quadrilateral.new([200,90]),
 	[320,50]  => Label.new.says("this is only a test"),
 	[150,90]  => "treat strings like labels"

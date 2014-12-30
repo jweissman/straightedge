@@ -5,21 +5,13 @@ module Straightedge
     #
     class Mark
       include Straightedge::Aspects::Positional
+      include Straightedge::Aspects::Colorable
 
-      attr_reader :color, :x, :y
+      attr_reader :x, :y
 
       def initialize(*xy, color: :black)
 	@x, @y = *xy
 	@color = color
-      end
-
-      # i don't think this is actually used :)
-      def dimensions
-	[0,0] 
-      end
-
-      def paint(color=Colors.pick)
-	@color = color 
       end
 
       def self.empty(*xy); new(*xy, color: :none) end

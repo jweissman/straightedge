@@ -3,6 +3,8 @@ module Straightedge
     # TODO the idea is that a figure is a collection of marks (and possibly other figures...?)
     #       marks should be represented relative to the *figural* origin
     class Figure
+      include Straightedge::Aspects::Colorable
+
       extend Forwardable
       include Enumerable
 
