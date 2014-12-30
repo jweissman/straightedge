@@ -9,7 +9,6 @@ require 'straightedge/figures'
 require 'straightedge/colors'
 require 'straightedge/scene'
 require 'straightedge/presenter'
-require 'straightedge/space'
 
 require 'straightedge/extend/array'
 

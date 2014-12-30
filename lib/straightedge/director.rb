@@ -5,7 +5,7 @@ module Straightedge
 
     def prepare_stage(geometry)
       @width, @height = *geometry
-      @space = QuadSpace.new([30,30], scale: 10.0)
+      @space = Grid.new([30,30], scale: 20.0)
       @space.paint!
     end
 

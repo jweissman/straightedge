@@ -24,6 +24,20 @@ module Straightedge
 	end
       end
 
+      def cell_at(xy)
+	@cells     ||= {}
+	@cells[xy] ||= Figures::Quadrilateral.new(dimensions: [@scale, @scale], location: to_pixels(xy)) #[xy.x+1,xy.y+1])) #to_pixels(xy))
+      end
+
+      def each_cell
+	each { |xy| yield cell_at(xy) }
+      end
+
+      def paint!
+        #each(&:to_point)
+	each_cell(&:paint)
+      end
+
       def clip(xys=[])
 	xys.reject do |xy|
 	  _x,_y = *xy
@@ -40,12 +54,12 @@ module Straightedge
       end
 
       def to_pixels(xy)
-	[xy.x * @scale, xy.y * @scale]
+	[xy.x * (@scale/2), xy.y * (@scale/2)]
       end
 
-      def to_coords(xy)
-	[xy.x / @scale, xy.y / @scale ]
-      end
+      #def to_coords(xy)
+      #  [xy.x / (@scale/2), xy.y / (@scale/2) ]
+      #end
     end
   end
 end
