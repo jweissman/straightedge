@@ -20,7 +20,7 @@ module Straightedge
 	@location = location
       end
 
-      def compass; @compass ||= Compass.default end
+      def compass; @compass ||= Straightedge::Toolkit::Compass.default end
 
       def adjacent
 	approximate_adjacent = map(&method(:project)).flatten(1).uniq

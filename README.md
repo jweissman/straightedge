@@ -6,15 +6,42 @@
 
 ## Description
 
-One idea is for this to house the reusable geometry logic in Ruby
+  Give me a compass and straightedge and I will conquer the world
+
+  [![Compass and Straightedge XKCD](http://imgs.xkcd.com/comics/compass_and_straightedge.png)](http://xkcd.com/866/) 
+
+  Geometry primitives and graphical app (game) framework framework.
 
 ## Features
+
+    * Geometry toolkit 
+      - extensible Compass
+      - Ruler (for measuring distances)
+
+    * Figures composed of points called Marks
+      - Line
+      - Quadrilateral
+      - Hexagon
+
+    * Some fledgling support for grids
+
+    * Some reactor-pattern framework platform components
+      to help standardize interfaces (see straightedge-gosu
+      and straightedge-canvas for examples)
 
 ## Examples
 
     require 'straightedge'
 
+    # you need an adapter to actually render something
+    require 'straightedge-gosu'
+
+    Straightedge.config.example_scene = { [200,200] => "hello world!" } 
+    Straightedge.bootstrap
+
 ## Requirements
+
+   Ruby 2.x should be enough
 
 ## Install
 
@@ -22,7 +49,11 @@ One idea is for this to house the reusable geometry logic in Ruby
 
 ## Synopsis
 
-    $ straightedge
+    Eventually it would be nice to support a CLI that wraps around tasks (note: not implemented yet)
+    
+    $ straightedge create [app] — builds an example app skeleton
+    $ straightedge serve — stands up a canvas webserver
+    $ straightedge play  — connects to local instance or plays through OpenGL adapter… etc
 
 ## Copyright
 

@@ -5,12 +5,12 @@ module Straightedge::Figures
     def initialize(location: Straightedge::ORIGIN, color: :white, scale: 1.0)
       super(location: location, color: color)
       @scale      = scale
-      #@dimensions = dimensions
       @marks      = corners
     end
 
+    # lots of magic here...
     def left_triangle
-      corners[0..2] #.cycle.ip.take(3)
+      corners[0..2]
     end
 
     def right_triangle
@@ -21,8 +21,7 @@ module Straightedge::Figures
       [corners[0], corners[2], corners[3], corners[5]]
     end
 
-    # nb except for this identical to quad
-    def corners #(scale=@scale)
+    def corners
       Array.new(6) do |i|
 	angle = 2 * Math::PI / 6 * (i+2)
 	x_i = x + scale * Math.cos(angle)
