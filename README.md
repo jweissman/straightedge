@@ -1,5 +1,7 @@
 # straightedge
 
+[![Code Climate](https://codeclimate.com/github/jweissman/straightedge/badges/gpa.svg)](https://codeclimate.com/github/jweissman/straightedge)
+
 * [Homepage](https://rubygems.org/gems/straightedge)
 * [Documentation](http://rubydoc.info/gems/straightedge/frames)
 * [Email](mailto:jweissman1986 at gmail.com)
