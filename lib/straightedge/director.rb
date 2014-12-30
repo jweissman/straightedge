@@ -5,15 +5,17 @@ module Straightedge
 
     def prepare_stage(geometry)
       @width, @height = *geometry
+      @space = QuadSpace.new([30,30], scale: 10.0)
+      @space.paint!
     end
 
     def orchestrate
-      warn 'implement Director#orchestrate in subclass'
+      @space.paint!
     end
 
     def current_scene
       Scene.new({
-	ORIGIN    => QuadSpace.new([10,10], scale: 10.0),
+	ORIGIN    => @space,
 	[10,10]   => "grid",
 
 	[200,300] => Quadrilateral.new(dimensions: [200,100], color: :green),

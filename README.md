@@ -38,8 +38,17 @@
     # you need an adapter to actually render something
     require 'straightedge-gosu'
 
-    Straightedge.config.example_scene = { [200,200] => "hello world!" } 
-    Straightedge.bootstrap
+    class Example::GameController < Straightedge::Director
+      def current_scene
+        {
+	  [200,300] => Quadrilateral.new(dimensions: [200,100], color: :green),
+	  [200,305] => "rectangle",
+
+	  [400,300] => Hexagon.new(scale: 40.0, color: :blue),
+	  [400,305] => "hexagon"
+	}
+      end
+    end
 
 ## Requirements
 
