@@ -8,7 +8,7 @@ module Straightedge
 
       attr_reader :dimensions, :scale, :figure
 
-      def initialize(dimensions=[], opts={})
+      def initialize(dimensions=[1,1], opts={})
 	@dimensions = dimensions
 	@scale      = opts.delete(:scale)  { 1.0 }
 	super(to_a, opts)

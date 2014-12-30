@@ -1,11 +1,14 @@
 require 'spec_helper'
 
+class GridPresenter; end
+Straightedge.config.presenter_classes = { Grid => GridPresenter }
+
 describe Adapter do
   let(:director) { Director.new }
   subject { Adapter.new(agent: director) }
 
-  #it 'should respond to adapter clicks' do
-  #  expect(subject).to receive(:handle).with(:click, [1,3])
-  #  adapter.click([1,3])
-  #end
+  it 'should find presenters' do
+    expect(subject.presenter_for(Grid.new)).to be_a(GridPresenter)
+    expect(subject.presenter_for(Space.new)).to be_a(GridPresenter)
+  end
 end

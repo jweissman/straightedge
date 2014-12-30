@@ -10,7 +10,9 @@ module Straightedge
     def render(adapter=nil)
       return false unless adapter
       @locations_and_figures.each do |location,figure|
-	presenter = adapter.presenter_for(figure).at(location)
+	figure = Figures::Label.new.says(figure) if figure.is_a?(String)
+	figure.location = location
+	presenter = adapter.presenter_for(figure)
 	presenter.display(figure)
       end
     end

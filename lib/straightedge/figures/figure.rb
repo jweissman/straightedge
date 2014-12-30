@@ -12,9 +12,9 @@ module Straightedge
       def_delegators :compass, :project
       def_delegators :location, :x, :y
 
-      attr_reader :marks, :scale, :location
+      attr_accessor :marks, :color, :location
 
-      def initialize(marks=[], location: [0,0], color: :white)
+      def initialize(marks=[], location: nil, color: :none)
 	@marks    = marks
 	@color    = color
 	@location = location

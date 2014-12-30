@@ -2,24 +2,24 @@ require 'mini/config'
 
 require 'straightedge/version'
 require 'straightedge/config'
-
 require 'straightedge/origin'
-
 require 'straightedge/aspects'
 require 'straightedge/tools'
 require 'straightedge/figures'
-require 'straightedge/extend/array'
-
+require 'straightedge/colors'
 require 'straightedge/scene'
 require 'straightedge/presenter'
 require 'straightedge/space'
 
-# for integration with gaming engines...
+require 'straightedge/extend/array'
+
+# for integration with viewing/gaming engines...
+# TODO try to downstream as much of this to supporting libs
+#      as possible
 require 'straightedge/motor/engine'
+require 'straightedge/motor/adapter'
 require 'straightedge/director'
-require 'straightedge/adapter'
 require 'straightedge/surface'
-require 'straightedge/colors'
 
 module Straightedge
   include Toolkit

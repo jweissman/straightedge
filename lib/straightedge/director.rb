@@ -13,11 +13,14 @@ module Straightedge
 
     def current_scene
       Scene.new({
-	ORIGIN    => QuadSpace.new([10,10], scale: 5.0).paint!,
-	[200,300] => Quadrilateral.new(location: [200,100]),
-	[400,300] => Hexagon.new(location: [200,100]),
-	[320,250] => Label.new.says("this is only a test"),
-	[150,90]  => "treat strings like labels"
+	ORIGIN    => QuadSpace.new([10,10], scale: 10.0),
+	[10,10]   => "grid",
+
+	[200,300] => Quadrilateral.new(dimensions: [200,100], color: :green),
+	[200,305] => "rectangle",
+
+	[400,300] => Hexagon.new(scale: 40.0, color: :blue),
+	[400,305] => "hexagon"
       })
     end
 
