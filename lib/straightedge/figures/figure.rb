@@ -24,10 +24,9 @@ module Straightedge
 
       def adjacent
 	approximate_adjacent = map(&method(:project)).flatten(1).uniq
-	actual_adjacent = approximate_adjacent.reject(&method(:include?))
-	actual_adjacent.sort_by(&method(:distance_from_center))
+	approximate_adjacent.reject(&method(:include?))
+	#actual_adjacent.sort_by(&method(:distance_from_center))
       end
-
 
       # note this is center of the collection of raw marks
       #      in terms of their own space; not displaced by location

@@ -24,9 +24,11 @@ module Straightedge
 	end
       end
 
+      # over-ride with data
+      def color_at(_); :none end 
       def cell_at(xy)
 	@cells     ||= {}
-	@cells[xy] ||= Figures::Quadrilateral.new(dimensions: [@scale, @scale], location: to_pixels(xy)) #[xy.x+1,xy.y+1])) #to_pixels(xy))
+	@cells[xy] = Figures::Quadrilateral.new(color: color_at(xy), dimensions: [@scale, @scale], location: to_pixels(xy))
       end
 
       def each_cell
@@ -40,19 +42,20 @@ module Straightedge
 
       def clip(xys=[])
 	xys.reject do |xy|
-	  _x,_y = *xy
-	  _x < 0 || _y < 0 || x >= _x || y >= _y
+	  _x, _y = xy.x, xy.y
+	  _x < 0 || _y < 0 || width >= _x || height >= _y
 	end 
       end
 
-      def self.each_coordinate(dimensions)
-	dimensions.x.times do |x|
-	  dimensions.y.times do |y|
+      def self.each_coordinate(dim)
+	dim.x.times do |x|
+	  dim.y.times do |y|
 	    yield [x,y]
 	  end
 	end
       end
 
+      # why scale/2? there's something goofy somewhere
       def to_pixels(xy)
 	[xy.x * (@scale/2), xy.y * (@scale/2)]
       end

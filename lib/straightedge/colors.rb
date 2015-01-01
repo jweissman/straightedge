@@ -8,11 +8,11 @@ module Straightedge
 	@names_and_values = names_and_hex_values 
       end
 
-
       def list; @names_and_values.keys end
       def_delegator :list, :sample
       
       def hex_value_for(name)
+	return name if name.is_a?(Integer)
 	raise "no such color: #{name}" unless list.include?(name)
 	@names_and_values[name] 
       end
@@ -20,8 +20,8 @@ module Straightedge
       def self.base
 	@core ||= new({
 	  white: 0xFFFFFFFF,
-	  black: 0xFF000000,
-	  none:  0x00000000,
+	  #black: 0xFF000000,
+	  #none:  0x00000000,
 	})
       end
 
@@ -64,6 +64,10 @@ module Straightedge
 
     def self.hex_value(color)
       palette.hex_value_for color
+    end
+
+    def self.dim(color, factor=0x2A000000) #2A2A2A)
+      Colors.hex_value(color) - factor
     end
   end
 

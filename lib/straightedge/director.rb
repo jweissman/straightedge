@@ -15,8 +15,7 @@ module Straightedge
 
     def current_scene
       Scene.new({
-	ORIGIN    => @space,
-	[10,10]   => "grid",
+	ORIGIN    => [ @space, "grid" ],
 
 	[200,300] => Quadrilateral.new(dimensions: [200,100], color: :green),
 	[200,305] => "rectangle",
