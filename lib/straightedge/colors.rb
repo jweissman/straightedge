@@ -21,7 +21,7 @@ module Straightedge
 	@core ||= new({
 	  white: 0xFFFFFFFF,
 	  #black: 0xFF000000,
-	  #none:  0x00000000,
+	  none:  0x00000000,
 	})
       end
 
@@ -62,8 +62,13 @@ module Straightedge
       palette.sample
     end
 
+    # http://stackoverflow.com/questions/1698318/ruby-generate-a-random-hex-color
+    def self.random
+      ("%08x" % (rand * 0xffffffff)).to_i(16)
+    end
+
     def self.hex_value(color)
-      palette.hex_value_for color
+      palette.hex_value_for(color) #rescue color
     end
 
     def self.dim(color, factor=0x2A000000) #2A2A2A)

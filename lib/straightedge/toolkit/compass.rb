@@ -3,7 +3,7 @@ module Straightedge
     class Compass
       extend Forwardable
       attr_accessor :rose
-      def_delegator :rose, :project
+      def_delegator :rose, :orbit
 
       def initialize(rose=Rose.extended)
 	@rose = rose

@@ -17,24 +17,5 @@ describe Array do
       end
     end
   end
-
-  # describe ".to_points" do
-  #   subject do
-  #     [[1,2],[3,2]]
-  #   end
-
-  #   context 'should decode as a set of points' do
-  #     it 'should have a center' do
-  #       expect(subject.center).to eql([2,2])
-  #     end
-
-  #     let(:expected_adjacent) do
-  #       [[2, 2], [2, 3], [2, 1], [1, 1], [3, 1], [1, 3], [3, 3], [4, 2], [0, 2], [0, 1], [0, 3], [4, 1], [4, 3]]
-  #     end
-  #     it 'should have adjacent coordinates' do
-  #       expect(subject.adjacent).to eql(expected_adjacent)
-  #     end
-  #   end
-  # end
 end
 

@@ -12,7 +12,7 @@ module Straightedge
       @locations_and_figures.each do |location,f|
 	if f.is_a?(Array)
 	  f.map do |figure|
-	    Scene.render_figure(figure, location,adapter) #(&method(:render_figure) )
+	    Scene.render_figure(figure, location,adapter)
 	  end
 	else
 	  Scene.render_figure(f, location,adapter)

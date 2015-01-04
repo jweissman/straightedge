@@ -13,7 +13,6 @@ module Straightedge
 
       def corners(w=width, h=height)
 	@corners ||= [[x,y],[x,y+h],[x+w,y+h],[x+w,y]]
-	#Rose.simple.project(origin).map { |xy| [xy.x*w, xy.y*h] }
       end
     end
   end

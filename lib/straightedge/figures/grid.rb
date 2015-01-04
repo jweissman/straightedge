@@ -18,6 +18,10 @@ module Straightedge
 	[xy.x, xy.y]
       end
 
+      def orbit(xy)
+	clip compass.orbit(xy)
+      end
+
       def each
 	Grid.each_coordinate([width, height]) do |x, y|
 	  yield(at([x,y]))
@@ -32,7 +36,7 @@ module Straightedge
       end
 
       def each_cell
-	each { |xy| yield cell_at(xy) }
+	each { |xy| c = cell_at(xy); yield c if c }
       end
 
       def paint!
@@ -43,7 +47,7 @@ module Straightedge
       def clip(xys=[])
 	xys.reject do |xy|
 	  _x, _y = xy.x, xy.y
-	  _x < 0 || _y < 0 || width >= _x || height >= _y
+	  _x < 0 || _y < 0 || _x >= width || _y >= height
 	end 
       end
 

@@ -7,10 +7,16 @@ module Straightedge
 	@directions = directions
       end
 
-      def project(point)
+      def orbit(point)
 	@directions.values.collect do |delta|
 	  Ruler.translate(point, delta)
 	end
+      end
+
+      def orbits(points, depth: 1)
+	return if depth.zero?
+	obs = points.map(&method(:orbit)).flatten(1)
+	(obs + orbits(obs, depth: depth-1)).uniq
       end
 
       class << self
@@ -25,6 +31,7 @@ module Straightedge
 	end
 
 	# for hex navigation (nb coords are in cube-space)
+	# TODO use for hex oriented grids
 	def hexagonal
 	  return @hex_rose unless @hex_rose.nil?
 	  @hex_rose = new directions: {

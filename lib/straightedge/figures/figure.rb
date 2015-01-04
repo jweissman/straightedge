@@ -9,7 +9,7 @@ module Straightedge
       include Enumerable
 
       def_delegators :marks, :each
-      def_delegators :compass, :project
+      def_delegators :compass, :orbit
       def_delegators :location, :x, :y
 
       attr_accessor :marks, :color, :location
@@ -23,7 +23,7 @@ module Straightedge
       def compass; @compass ||= Straightedge::Toolkit::Compass.default end
 
       def adjacent
-	approximate_adjacent = map(&method(:project)).flatten(1).uniq
+	approximate_adjacent = map(&method(:orbit)).flatten(1).uniq
 	approximate_adjacent.reject(&method(:include?))
 	#actual_adjacent.sort_by(&method(:distance_from_center))
       end
@@ -35,9 +35,9 @@ module Straightedge
 	[map(&:x).mean, map(&:y).mean]
       end
 
-      def distance_from_center(xy)
-	Straightedge::Toolkit::Ruler.distance(xy,center)
-      end
+      #def distance_from_center(xy)
+      #  Straightedge::Toolkit::Ruler.distance(xy,center)
+      #end
     end
   end
 end
